@@ -19,8 +19,9 @@ export default {
         params: store.queryParams
       })
         .then(result => {
-          console.log(result.data);
-          this.store.movieList = result.data 
+          // console.log(result.data);
+          store.movieList = result.data.results
+          console.log(store.movieList); 
         })
     }
   },
@@ -33,11 +34,11 @@ export default {
 
 <template>
 
-  <Header />
+  <Header @startSearch="getApi" />
   <Main />
 
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @use './assets/scss/main.scss';
 </style>
