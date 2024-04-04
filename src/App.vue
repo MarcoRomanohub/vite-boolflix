@@ -1,12 +1,12 @@
 <script>
 import axios from 'axios';
 import { store } from './data/store';
-import Header from './components/Header.vue';
-import Main from './components/Main.vue';
+import SearchBar from './components/SearchBar.vue';
+import CardsContainer from './components/CardsContainer.vue'
 export default {
   components: {
-    Header,
-    Main
+    SearchBar,
+    CardsContainer
   },
   data(){
     return{
@@ -14,19 +14,22 @@ export default {
     }
   },
   methods:{
-    getApi(){
-      axios.get(this.store.apiUrl, {
+    getApi(type){
+      axios.get(store.apiUrl + type, {
         params: store.queryParams
       })
-        .then(result => {
-          // console.log(result.data);
-          store.movieList = result.data.results
-          console.log(store.movieList); 
+        .then(res => {
+          store[type] = res.data.results;
+          console.log(store[type]); 
         })
+    },
+    startSearch(){
+      this.getApi('movie')
+      this.getApi('tv')
     }
   },
   mounted(){
-    this.getApi()
+    this.startSearch()
   }
 }
 
@@ -34,11 +37,12 @@ export default {
 
 <template>
 
-  <Header @startSearch="getApi" />
-  <Main />
+  <SearchBar @startSearch="startSearch" />
+  <CardsContainer type="movie" v-if="store.movie.length > 0" />
+  <CardsContainer type="tv" v-if="store.tv.length > 0" />
 
 </template>
 
 <style lang="scss">
 @use './assets/scss/main.scss';
-</style>
+</style>./components/CardsContainer.vue/SearchBar.vue
