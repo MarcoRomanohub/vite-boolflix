@@ -3,6 +3,10 @@ export default {
   props: {
     cardObj: Object, 
   },
+  methods:{
+    ratingStars(vote) { return Math.floor(vote/2) },
+    // ratingStars(vote) { return Math.ceils(5 - (vote/2)) }
+  }
 
 }
 
@@ -16,13 +20,17 @@ export default {
     <div class="card-body">
       <h5 class="card-title">{{ cardObj.title || cardObj.name }}</h5>
       <h6 class="card-subtitle mb-2 text-body-secondary">{{ cardObj.original_title || cardObj.original_name }}</h6>
-      <div v-if="cardObj.original_language!== 'it' & cardObj.original_language!== 'en' ">
-        <p class="card-text">{{ cardObj.original_language }}</p>
-      </div>
-      <div class="flag" v-else>
+      <p v-if="cardObj.original_language!== 'it' && cardObj.original_language!== 'en' " class="card-text">
+        {{ cardObj.original_language }}
+      </p>
+      <p v-else class="flag">
         <img :src="'/public/flags/' +  cardObj.original_language + '.png'" alt="">
-      </div>
-      <p class="card-text">{{ cardObj.vote_average}}</p>
+      </p>
+      <p class="card-text">
+        <i v-for="star in ratingStars(cardObj.vote_average)" :key="star" class="fa-solid fa-star"></i>
+        <i v-for="star in (5 - ratingStars(cardObj.vote_average))" :key="star" class="fa-regular fa-star"></i>
+         {{ratingStars(cardObj.vote_average)}}
+      </p>
     </div>
   </div>
 </div>

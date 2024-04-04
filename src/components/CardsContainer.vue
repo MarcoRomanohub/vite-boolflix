@@ -15,7 +15,7 @@ export default {
   },
   computed:{
     title(){
-      return this.type === 'movie' ? 'Film' : 'Serie Tv'
+      return this.type === 'movie' ? 'Film' : 'Serie TV'
     }
   }
 }
@@ -24,7 +24,7 @@ export default {
 
 <template>
   <div class="text-center container my-5">
-    <h3>{{ title }}</h3>
+    <h2>{{ title }}</h2>
     <div class="row row-cols-2 row-cols-md-4">
       <Card v-for="card in store[type]" :key="card.id" :cardObj="card" />
     </div>
