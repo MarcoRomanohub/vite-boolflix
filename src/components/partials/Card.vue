@@ -23,12 +23,12 @@ export default {
       <p v-if="cardObj.original_language!== 'it' && cardObj.original_language!== 'en' " class="card-text">
         {{ cardObj.original_language }}
       </p>
-      <p v-else class="flag">
+      <p v-else class="flag mx-auto my-3  ">
         <img :src="'/public/flags/' +  cardObj.original_language + '.png'" alt="">
       </p>
       <p class="card-text">
-        <i v-for="star in ratingStars(cardObj.vote_average)" :key="star" class="fa-solid fa-star"></i>
-        <i v-for="star in (5 - ratingStars(cardObj.vote_average))" :key="star" class="fa-regular fa-star"></i>
+        <i v-for="star in ratingStars(cardObj.vote_average)" class="fa-solid fa-star"></i>
+        <i v-for="star in (5 - ratingStars(cardObj.vote_average))"  class="fa-regular fa-star"></i>
          {{ratingStars(cardObj.vote_average)}}
       </p>
     </div>
@@ -39,6 +39,6 @@ export default {
 
 <style lang="scss" scoped>
   .flag{
-    width: 80px;
+    width: 50px;
   }
 </style>
