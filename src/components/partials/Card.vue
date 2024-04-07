@@ -46,7 +46,7 @@ export default {
   background-color: transparent;
   width: 300px;
   height: 440px;
-  border: 1px solid rgba(0, 0, 0, 0.425);
+  border: 1px solid rgba(0, 0, 0, 0.097);
   perspective: 1000px;
 }
 
@@ -78,7 +78,6 @@ export default {
 
 
 .flip-card-front {
-  background-color: #bbb;
   color: black;
 }
 

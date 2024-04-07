@@ -25,7 +25,7 @@ export default {
 <template>
   <div class="text-center container my-5">
     <h2>{{ title }}</h2>
-    <div class="row row-cols-2 row-cols-md-4 mt-5  ">
+    <div class="row row-cols-2 row-cols-lg-4 mt-5  ">
       <Card v-for="card in store[type]" :key="card.id" :cardObj="card" />
     </div>
   </div>
